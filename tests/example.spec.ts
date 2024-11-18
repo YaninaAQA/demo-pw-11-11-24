@@ -7,7 +7,7 @@ test.beforeEach(async ({ page }) => {
   await page.goto(filePath);
 })
 
-test.only ('Check Place your order button is enable with correct data and pop up message is visible', async ({ page }) => {
+test ('Check Place your order button is enable with correct data and pop up message is visible', async ({ page }) => {
 const orderButton = page.getByTestId("submit-order")
 const usernameInput = page.getByTestId("username")
 const emailInput = page.getByTestId("email")
