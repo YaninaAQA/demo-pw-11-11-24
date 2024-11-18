@@ -1,18 +1,42 @@
 import { test, expect } from '@playwright/test';
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
-});
+test.beforeEach(async ({ page }) => {
+  const path = require('path');
+  const filePath = `file://${path.resolve('html/dummy-order.html')}`;
+  await page.goto(filePath);
+})
 
-test.only ('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test.only ('Check Place your order button is enable with correct data and pop up message is visible', async ({ page }) => {
+const orderButton = page.getByTestId("submit-order")
+const usernameInput = page.getByTestId("username")
+const emailInput = page.getByTestId("email")
+const okPopUp = page.locator("#popup-message")
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
+  await expect(orderButton).toBeDisabled()
+  await usernameInput.fill("testUser")
+  await emailInput.fill("testUser@gmail.com")
+  await expect(orderButton).toBeEnabled()
 
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
-});
+  await orderButton.click()
+  await  expect(okPopUp).toBeVisible()
+
+})
+
+test('When correct data is removed the button is disabled', async ({ page }) => {
+  const orderButton = page.getByTestId("submit-order")
+  const usernameInput = page.getByTestId("username")
+  const emailInput = page.getByTestId("email")
+  const okPopUp = page.locator("#popup-message")
+
+
+  await usernameInput.fill("testUser")
+  await emailInput.fill("testUser@gmail.com")
+  await expect(orderButton).toBeEnabled()
+
+  await usernameInput.fill("")
+  await emailInput.fill("")
+  await expect(orderButton).toBeDisabled()
+
+})
+
