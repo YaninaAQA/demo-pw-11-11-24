@@ -11,7 +11,7 @@ test ('Check for incorrect credentials message and close pop up message', async 
     const passwordField = page.getByTestId("password-input")
     const signInButton = page.getByTestId("signIn-button")
     const errorPopUpMessage = page.getByTestId("authorizationError-popup")
-    const closeButton = page.getByTestId("authorizationError-popup-close-button")
+    const closeButton = page.getByTestId("authorizationError-popup-close-button");
 
     const fakeUsername = faker.internet.username()
     const fakePassword = faker.internet.password()
