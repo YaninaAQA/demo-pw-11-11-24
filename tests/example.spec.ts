@@ -48,5 +48,5 @@ test('Check for error messages for login input', async ({ page }) => {
     await expect(emptyErrorMessageForShortPassword).toBeVisible()
 
     await passwordField.fill("")
-    await expect(emptyErrorMessageForPassword).toBeVisible()
+    await expect(emptyErrorMessageForPassword).toBeVisible();
 });
