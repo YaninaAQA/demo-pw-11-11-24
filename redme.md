@@ -8,3 +8,9 @@ Username field: data-testid="username"
 Email field: data-testid="email"
 OK pop up message: #popup-message
 
+# Install the Faker.js library 
+by running: npm install @faker-js/faker
+
+# Run tests
+npx playwright test
+
