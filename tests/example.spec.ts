@@ -36,7 +36,7 @@ test('Check for error messages for login input', async ({ page }) => {
     const emptyErrorMessageForShortUserName = page.getByText('The field must contain at least of characters: 2')
     const emptyErrorMessageForShortPassword = page.getByText('The field must contain at least of characters: 8')
 
-    const badUsername = faker.internet.username().slice(0, 3);
+    const badUsername = faker.internet.username().slice(0, 1);
     await usernameField.fill(badUsername)
     await expect(emptyErrorMessageForShortUserName).toBeVisible()
 
